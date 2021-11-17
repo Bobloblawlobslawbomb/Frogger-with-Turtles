@@ -10,14 +10,6 @@ class CarManager(Turtle):
     def __init__(self):
         super().__init__()
         self.car_list = []
-        # self.create_traffic()
-        self.add_car()
-        self.add_car()
-        self.add_car()
-
-    # def create_traffic(self):
-    #     for color in COLORS:
-    #         self.add_car(color)
 
     def add_car(self):
         new_car = Turtle("square")
@@ -27,6 +19,6 @@ class CarManager(Turtle):
         new_car.goto(295, randint(-250, 250))
         self.car_list.append(new_car)
 
-    def car_move(self):
-        x_cor = self.xcor() + MOVE_INCREMENT
-        self.goto(x_cor, self.ycor())
+    def move_cars(self):
+        for car in self.car_list:
+            car.backward(STARTING_MOVE_DISTANCE)
