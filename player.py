@@ -1,9 +1,7 @@
 from turtle import Turtle
 from random import randint
 
-STARTING_POSITION = (0, -280)
 MOVE_DISTANCE = 10
-FINISH_LINE_Y = 280
 
 
 class Player(Turtle):
@@ -20,13 +18,11 @@ class Player(Turtle):
 
     def left(self):
         x_pos = self.xcor() - MOVE_DISTANCE
-        y_pos = self.ycor()
-        self.setpos(x_pos, y_pos)
+        self.setpos(x_pos, self.ycor())
 
     def right(self):
         x_pos = self.xcor() + MOVE_DISTANCE
-        y_pos = self.ycor()
-        self.setpos(x_pos, y_pos)
+        self.setpos(x_pos, self.ycor())
 
     def go_home(self):
         self.goto(randint(-100, 100), -280)
