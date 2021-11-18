@@ -10,11 +10,10 @@ screen.bgcolor("black")
 screen.title("TURTLER (frogger w/ a turtle)")
 screen.tracer(0)
 
-game_is_on = True
+game_on = True
 
 player = Player()
 scoreboard = Scoreboard()
-
 traffic = CarManager()
 
 screen.listen()
@@ -22,20 +21,20 @@ screen.onkeypress(player.up, "Up")
 screen.onkeypress(player.left, "Left")
 screen.onkeypress(player.right, "Right")
 
-while game_is_on:
+while game_on:
     time.sleep(0.1)
     screen.update()
-
-    for car in traffic.car_list:
-        traffic.car_move()
+    traffic.add_car()
+    traffic.move_cars()
 
     if player.ycor() == 280:
         print("You win!")
         player.go_home()
         scoreboard.level_up()
 
+    for car in traffic.car_list:
+        if player.distance(car) < 20:
+            scoreboard.game_over()
+            game_on = False
 
-# move car(s) across the screen
-
-
-# detect collision between player and cars --use distance()
+screen.exitonclick()
